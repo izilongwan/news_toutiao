@@ -2,10 +2,10 @@ const path = require('path');
 const uglify = require('uglifyjs-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-//const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const miniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
-  mode: 'development', //production
+  mode: 'production', //production
   entry: {
   	index: path.resolve(__dirname, './src/js/index.js'),
     detail: path.resolve(__dirname, './src/js/detail.js'),
@@ -34,13 +34,13 @@ const config = {
       {
         test: /\.scss$/,
         use: [
-         //  {
-         //  	loader: miniCssExtractPlugin.loader,
-	        //   options: {
-	        // 	  hmr: process.env.NODE_ENV === 'development'
-	        //   }
-	        // },
-	        'style-loader',
+          {
+          	loader: miniCssExtractPlugin.loader,
+	          options: {
+	        	  hmr: process.env.NODE_ENV === 'development'
+	          }
+	        },
+	        // 'style-loader',
 	        'css-loader',
 	        {
 	        	loader: 'postcss-loader',
@@ -57,7 +57,7 @@ const config = {
       {
       	test: /\.(png|jpg|jpeg|gif|ico)$/i,
       	loader: [
-          'url-loader?limit=1024&name=img/[name]-[hash:16].[ext]',
+          'url-loader?limit=1024&name=img/[name]-[contenthash:6].[ext]',
           'image-webpack-loader'
       	]
       }
@@ -77,7 +77,7 @@ const config = {
       chunksSortMode: 'manual',
       chunks: ['index'],
       excludeChunks: ['node_modules'],
-      hash: true
+      hash: true // 引入的CSS、scripts后带?hash，避免缓存
     }),
     new htmlWebpackPlugin({
       minify: {
@@ -104,11 +104,11 @@ const config = {
       chunks: ['collections'],
       excludeChunks: ['node_modules'],
       hash: true
-    })
+    }),
 
-    // new miniCssExtractPlugin({
-    // 	filename: 'css/[name].css'
-    // })
+    new miniCssExtractPlugin({
+    	filename: 'css/[name].css'
+    })
   ],
 
   devServer: {
