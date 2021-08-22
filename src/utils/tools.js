@@ -25,7 +25,8 @@ module.exports = {
   tplReplace,
   thumbShow,
   scrollToBottom,
-  getUrlQueryValue
+  getUrlQueryValue,
+  resetFontSize,
 }
 
 /****************************** 内部方法 *********************************/
@@ -41,7 +42,7 @@ function _getScrollTop() {
   scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
   return scrollTop;
 }
- 
+
 function _getScrollHeight() {
   var scrollHeight = 0, bodyScrollHeight = 0, documentScrollHeight = 0;
   if (document.body) {
@@ -62,4 +63,13 @@ function _getWindowHeight() {
       windowHeight = document.body.clientHeight;
   }
   return windowHeight;
+}
+
+function resetFontSize() {
+  function resetSize() {
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 37.5 + 'px';
+  }
+
+  window.addEventListener('resize', resetSize)
+  window.addEventListener('DOMContentLoaded', resetSize)
 }

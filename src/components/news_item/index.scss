@@ -4,7 +4,7 @@
 	img {
 		height: 100%;
 		opacity: 0;
-		transition: opacity .5s;
+		transition: opacity 0.5s;
 	}
 
 	.info {
@@ -20,60 +20,50 @@
 	}
 
 	.title {
-		padding: .5rem 0;
+		padding: 0.5rem 0;
 
 		h1 {
 			font-size: 1.6rem;
 		}
 	}
 
-    &.type-1 {
-    	.main {
-    		display: flex;
-    		flex-direction: row;
+	&.type-1 {
+		.main {
+			display: flex;
+			flex-direction: row;
 
-    		.pic {
-    			flex: 1;
-    			background-color: #eee;
-    			box-sizing: border-box;
-    		}
+			.pic {
+				flex: 1;
+				background-color: #eee;
+				box-sizing: border-box;
+			}
 
-    		.title {
-    			flex: 2;
-    			padding-right: 1rem;
-    			box-sizing: border-box;
-    		}
-    	}
-    }
+			.title {
+				flex: 2;
+				padding-right: 1rem;
+				box-sizing: border-box;
+			}
+		}
+	}
 
-    &.type-2,
-    &.type-3 {
-    	.pic {
-    		display: flex;
-    		flex-direction: row;
-    		justify-content: space-between;
+	&.type-2,
+	&.type-3 {
+		.pic {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
 
-    		.img {
-    			width: 33.33%;
-    			flex: 1 1 auto;
-    			margin-right: .5rem;
-    			background-color: #eee;
-    			font-size: 0;
+			.img {
+				width: 33.33%;
+				flex: 1 1 auto;
+				margin-right: 0.5rem;
+				background-color: #eee;
+				font-size: 0;
 
-    			&.last {
-    				margin: 0;
-    			}
-    		}
-    	}
-    }
+				&.last {
+					margin: 0;
+				}
+			}
+		}
+	}
 }
-
-
-
-
-
-
-
-
-
-

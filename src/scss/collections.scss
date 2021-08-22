@@ -2,4 +2,45 @@
 
 .list {
 	margin-top: 4.4rem;
+	overflow-x: hidden;
+
+	&.collections {
+		.news-item {
+			&.remove {
+				transition: transform 0.3s;
+				transform: translate(130%);
+			}
+		}
+
+		.content {
+			overflow: hidden;
+		}
+
+		.main {
+			position: relative;
+			transition: transform 0.5s;
+
+			$offsetX: 7.5rem;
+
+			&::after {
+				position: absolute;
+				top: 0;
+				right: -$offsetX;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				content: '删 除';
+				width: 6rem;
+				height: 100%;
+				background-color: rgb(252, 77, 77);
+				color: #fff;
+				font-size: 2rem;
+				border-radius: 0.8rem;
+			}
+
+			&.operate {
+				transform: translate(-$offsetX);
+			}
+		}
+	}
 }

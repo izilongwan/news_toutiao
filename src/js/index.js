@@ -6,6 +6,8 @@ import NewsItem from '../components/news_item/index';
 import PageLoading from '../components/page_loading/index';
 import BottomTip from '../components/bottom_tip/index';
 import ErrorTip from '../components/error_tip/index';
+import Zepto from 'zepto-webpack'
+import FastClick from 'fastclick'
 
 import { IndexModel } from '../models/index';
 
@@ -22,7 +24,7 @@ const header = new Header(),
 const indexModel = new IndexModel();
 
 const App = ($, win) => {
-  
+
   const $app = $('#app'),
         $window = $(win),
         $list = $app.children('.list'),
@@ -36,6 +38,8 @@ const App = ($, win) => {
       bottomLock = false;
 
   const init = () => {
+    tools.resetFontSize();
+    FastClick && FastClick.attach(document.body);
     render(field, pageNum, showCount).then(bindEvent);
   }
 
@@ -55,7 +59,7 @@ const App = ($, win) => {
 
   const _renderHeader = () => {
   	$app.append(header.tpl({
-  		title: 'JS++新闻头条',
+  		title: '新闻头条',
   		showLeftIcon: false,
   		showRightIcon: true
   	}));
@@ -82,7 +86,7 @@ const App = ($, win) => {
 
         dataCache[field] = res;
         pageCount = dataCache[field].length;
-        
+
         setTimeout(() => {
           _insertList('cover');
         }, 1000);
@@ -103,7 +107,7 @@ const App = ($, win) => {
         $list.append(newsItem.tpl(dataCache[field][pageNum], pageNum));
         _afterRender(false);
     }
-    
+
     bottomLock = false;
     _handleBottomTip('remove');
   }
@@ -132,7 +136,7 @@ const App = ($, win) => {
       case 'append':
         $app.append(bottomTip.tpl(isLoading, text));
         break;
-      case 'remove': 
+      case 'remove':
         $('.bottom-tip').remove();
         break;
       case 'removeAndAppend':
@@ -146,7 +150,7 @@ const App = ($, win) => {
 
   const _handleErrorTip = (how, text) => {
     switch (how) {
-      case 'append': 
+      case 'append':
         $app.append(errorTip.tpl(text));
         break;
       case 'remove':
@@ -211,10 +215,3 @@ const App = ($, win) => {
 }
 
 App(Zepto, window);
-
-
-
-
-
-
-

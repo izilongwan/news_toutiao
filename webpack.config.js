@@ -5,7 +5,7 @@ const autoprefixer = require('autoprefixer');
 //const miniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
-  mode: 'production', //production
+  mode: 'development', //production
   entry: {
   	index: path.resolve(__dirname, './src/js/index.js'),
     detail: path.resolve(__dirname, './src/js/detail.js'),
@@ -72,8 +72,8 @@ const config = {
       	collapseWhitespace: true
       },
       filename: 'index.html',
-      template: path.resolve(__dirname, 'src/index.html'),
-      title: 'JS++新闻头条',
+      template: path.resolve(__dirname, 'src/public/index.html'),
+      title: '我的头条',
       chunksSortMode: 'manual',
       chunks: ['index'],
       excludeChunks: ['node_modules'],
@@ -85,7 +85,7 @@ const config = {
         collapseWhitespace: true
       },
       filename: 'detail.html',
-      template: path.resolve(__dirname, 'src/detail.html'),
+      template: path.resolve(__dirname, 'src/public/detail.html'),
       title: '新闻详情',
       chunksSortMode: 'manual',
       chunks: ['detail'],
@@ -98,7 +98,7 @@ const config = {
         collapseWhitespace: true
       },
       filename: 'collections.html',
-      template: path.resolve(__dirname, 'src/collections.html'),
+      template: path.resolve(__dirname, 'src/public/collections.html'),
       title: '我的收藏',
       chunksSortMode: 'manual',
       chunks: ['collections'],
@@ -122,9 +122,3 @@ const config = {
 };
 
 module.exports = config;
-
-
-
-
-
-
